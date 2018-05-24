@@ -1,0 +1,20 @@
+import scrapy
+from scrapy.spiders import CrawlSpider, Rule
+from scrapy.linkextractors import LinkExtractor
+
+class deneme(CrawlSpider):
+    name = 'yorum'
+    allowed_domains = ['hepsiburada.com']
+    start_urls = ['https://www.hepsiburada.com/']
+    rules = (
+        Rule(LinkExtractor(), callback='parse_item', follow=True),
+    )
+    
+   
+    def parse_item(self, response):
+        item = ""
+        item["name"] = response.xpath('//p[@class="review-text"]/text()').extract()
+
+        filename = response.url.split("/")[-2] + '.html'
+        with open(filename, 'wb') as f:
+            f.write(item["name"])
