@@ -9,17 +9,12 @@ def main():
     
     db = connection.hepsiburada #your db name instead of 'hepsiburada'
     people = db.hepsiburada     #your db name instead of 'hepsiburada'
-    f = open('/home/ayyuce/Desktop/ex.txt')  # open a file
+    f = open('/home/ayyuce/Desktop/new_output.txt')  # open a file
     text = f.readline() 
     while text:
-        
-        content={"file_name": "/home/ayyuce/Desktop/ex.txt", "contents" : text }
-
-            
-        people.insert(content)
         text = f.readline()
-   
-    
+    content={"file_name": "/home/ayyuce/Desktop/ex.txt", "contents" : text }
+    people.insert(content)
     
 
 if __name__ == '__main__':
